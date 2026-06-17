@@ -380,3 +380,8 @@ p { margin: 0; }
   #intro-screen { display: none; }
   .has-intro .page { opacity: 1; }
 }
+
+
+/* Intro: mostrar solo en la primera visita */
+.skip-intro #intro-screen { display: none !important; }
+.skip-intro .page { opacity: 1 !important; animation: none !important; }
