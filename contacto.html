@@ -76,7 +76,8 @@
 
         <!-- Formulario -->
         <div class="form-wrap">
-          <form action="https://formspree.io/f/mykaojaz" method="POST">
+          <form id="contact-form" action="https://formspree.io/f/mykaojaz" method="POST">
+            <input type="hidden" name="_next" value="https://fenicegroup.github.io/nexo-web/gracias.html">
             <div class="field">
               <label for="nombre">Nombre completo <span class="req">*</span></label>
               <input id="nombre" name="nombre" type="text" required>
@@ -106,7 +107,13 @@
             </div>
             <button type="submit" class="btn btn-cta">Enviar consulta</button>
             <p class="form-note">Tu informaci&oacute;n se trata con estricta confidencialidad. No compartimos datos con terceros.</p>
+            <p class="form-error" id="form-err">No pudimos enviar tu consulta. Proba de nuevo o escribinos a institucional.nexo@gmail.com</p>
           </form>
+          <div class="form-success" id="form-ok" role="status" aria-live="polite">
+            <svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24" fill="none" stroke="#1E4D52" stroke-width="3"/><path fill="none" stroke="#E8472A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M15 27 L23 35 L38 18"/></svg>
+            <h3>&iexcl;Gracias por tu mensaje!</h3>
+            <p>Recibimos tu consulta y te vamos a responder a la brevedad.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -142,6 +149,28 @@
         var open = m.classList.toggle('open');
         t.classList.toggle('active', open);
         t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    })();
+  </script>
+  <script>
+    /* Envio del formulario sin salir de la pagina (Formspree AJAX) */
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+      var ok = document.getElementById('form-ok');
+      var err = document.getElementById('form-err');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        err.style.display = 'none';
+        var btn = form.querySelector('button[type=submit]');
+        var label = btn.textContent;
+        btn.disabled = true; btn.textContent = 'Enviando...';
+        fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+          .then(function (r) {
+            if (r.ok) { form.style.display = 'none'; ok.style.display = 'block'; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+            else { throw new Error('fail'); }
+          })
+          .catch(function () { err.style.display = 'block'; btn.disabled = false; btn.textContent = label; });
       });
     })();
   </script>

@@ -432,3 +432,11 @@ p { margin: 0; }
   .lightbox-nav { width: 44px; height: 44px; font-size: 26px; }
   .lightbox-prev { left: 10px; } .lightbox-next { right: 10px; }
 }
+
+
+/* Mensaje de envio del formulario */
+.form-error { display: none; color: var(--terracota-osc); font-size: 14.5px; margin-top: 12px; text-align: center; }
+.form-success { display: none; text-align: center; padding: 18px 4px 6px; }
+.form-success svg { width: 56px; height: 56px; margin: 0 auto 16px; display: block; }
+.form-success h3 { color: var(--petroleo); font-size: 22px; margin-bottom: 8px; }
+.form-success p { color: var(--gris); font-size: 16px; line-height: 1.55; }
