@@ -151,7 +151,7 @@ p { margin: 0; }
 .hero-variant { display: none; }
 .hero-variant.show { display: block; }
 
-.hero-inner { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; padding: clamp(64px,8vw,116px) 0; }
+.hero-inner { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; padding: clamp(112px,12vw,176px) 0 clamp(64px,8vw,116px); }
 .hero-copy { flex: 1 1 440px; min-width: 300px; }
 .hero h1 { font-size: clamp(2.15rem, 4.6vw, 3.5rem); line-height: 1.08; letter-spacing: -0.028em; margin-bottom: 26px; }
 .hero-lead { font-size: 18px; line-height: 1.65; max-width: 540px; margin-bottom: 36px; }
